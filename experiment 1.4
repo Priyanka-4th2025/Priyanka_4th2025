@@ -1,0 +1,47 @@
+public class BasicBankingSystem {
+    private static double[] accountBalances = {1000.50, 2500.75, 3000.00, 1200.30};
+    
+
+    private static int[] transactionIDs = {101, 102, 103, 104};
+
+    public static double calculateAverageBalance() {
+        double totalBalance = 0;
+        try {
+            for (double balance : accountBalances) {
+                totalBalance += balance;
+            }
+
+      
+            double averageBalance = totalBalance / accountBalances.length;
+            return averageBalance;
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero. No account holders found.");
+            return 0; 
+        }
+    }
+
+  
+    public static void verifyTransactionID(int transactionIndex) {
+        try {
+    
+            System.out.println("Verifying transaction ID: " + transactionIDs[transactionIndex]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Invalid transaction ID index. Please provide a valid index.");
+        }
+    }
+
+    public static void main(String[] args) {
+  
+        double averageBalance = calculateAverageBalance();
+        if (averageBalance != 0) {
+            System.out.println("Average account balance: $" + averageBalance);
+        }
+
+    
+        System.out.println("\nVerifying valid transaction ID (index 2):");
+        verifyTransactionID(2); 
+
+        System.out.println("\nVerifying invalid transaction ID (index 5):");
+        verifyTransactionID(5); 
+    }
+}
